@@ -58,19 +58,14 @@ const cardAppender = (selector) => {
   axios.get(`http://localhost:5000/api/articles`)
     .then(res => {
       const articles = res.data.articles
-      function append (array){
-        for (let i = 0; i < array.length; i++){
-          document.querySelector(selector).appendChild(Card(array[i]))
-        }
+      for (const property in articles){
+        articles[property].forEach(article => {
+          document.querySelector(selector).appendChild(Card(article))
+        })
       }
-      append(articles.bootstrap);
-      append(articles.javascript);
-      append(articles.jquery);
-      append(articles.node);
-      append(articles.technology);
     })
     .catch(err => console.log(err))
 }
-//I tried to find a way to iterate over the keys of an object but wasn't able to figure it out, so I'm stuck with this less than DRY code...
+//I am very proud of how dry this code is, finding out how to iterate over an object was difficult.
 
 export { Card, cardAppender }
