@@ -57,17 +57,17 @@ const cardAppender = (selector) => {
   //
   axios.get(`http://localhost:5000/api/articles`)
     .then(res => {
-      console.log(res.data.articles)
+      const articles = res.data.articles
       function append (array){
         for (let i = 0; i < array.length; i++){
           document.querySelector(selector).appendChild(Card(array[i]))
         }
       }
-      append(res.data.articles.bootstrap);
-      append(res.data.articles.javascript);
-      append(res.data.articles.jquery);
-      append(res.data.articles.node);
-      append(res.data.articles.technology);
+      append(articles.bootstrap);
+      append(articles.javascript);
+      append(articles.jquery);
+      append(articles.node);
+      append(articles.technology);
     })
     .catch(err => console.log(err))
 }
